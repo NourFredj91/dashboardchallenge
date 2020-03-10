@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-  //  return view('welcome');
-//});
-
-//Route::get('/register', 'RegistrationController@create');
-Route::get('/register', function () {
-    return view('registration.register');
+Route::get('/', function () {
+    return view('welcome');
 });
+
+Auth::routes(['verify' => true]);
+Route::get('/login', 'LoginController@users')
+    ->middleware('UserMiddleware')    
+    ->name('users');
+
+Route::get('/home', 'HomeController@index')->name('home');
