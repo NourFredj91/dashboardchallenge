@@ -6,11 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Challenge extends Model
 {
-  /**
-    * Get the comments for the challenge.
-    */
-  public function comments()
- {
-     return $this->hasMany('App\Comment');
- }
+
+      /*
+        relation many to many
+      */
+
+    public function users()
+     {
+         return $this->belongsToMany(User::class, 'challenge_user_relations');
+     }
+
+     /**
+     * Get the comments of challenge.
+     */
+      public function comments()
+      {
+        return $this->hasMany(Comment::class);
+      }
 }
