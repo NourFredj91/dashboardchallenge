@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class UserMiddleware
+class HomeMiddleware
 {
     /**
      * Handle an incoming request.
@@ -14,10 +14,7 @@ class UserMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-  {
-      if(auth()->user()->authority !=0) {
-          return $next($request);
-      }
-      return redirect('home');
-  }
+    {
+        return $next($request);
+    }
 }

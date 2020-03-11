@@ -43,4 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail
       return $this->belongsToMany(Challenge::class, 'challenge_user_relations');
   }
 
+    public function isNotGuest()
+  {
+      return $this->authority == 0 ? false : true; // this looks for an admin column in your users table
+  }
 }

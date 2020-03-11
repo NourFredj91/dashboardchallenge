@@ -18,8 +18,11 @@ Route::get('/', function () {
 });
 
 Auth::routes(['verify' => true]);
-Route::get('/login', 'LoginController@users')
-    ->middleware('UserMiddleware')    
-    ->name('users');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/challenge-details/{id_challenge}', 'ChallengeController@index')->name('details');
+Route::get('/challenges', 'ChallengeController@get')->name('Challenges');
+Route::get('/authority', 'UserController@index')->name('Authority');
+Route::get('/edit-challenge', 'ChallengeController@edit')->name('Authority');
+Route::get('/delete-challenge', 'ChallengeController@delete')->name('Authority');
+Route::get('/add-challenge', 'ChallengeController@add')->name('Authority');

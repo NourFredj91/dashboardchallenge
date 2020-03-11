@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('authority')->default(0); //authority: 0 ==> Guest/ authority: 1 ==>Participant / authority:2 ==>Admin /authority:3 ==>Organizer
+            $table->string('authority')->default(0); //authority: 0 ==> Guest/ authority: 1 ==>Participant /authority: 2 ==> Admin/ authority: 3 ==>Organizer 
             $table->string('email')->unique();
             $table->boolean('verfied')->default(false);
             $table->timestamp('email_verified_at')->nullable();

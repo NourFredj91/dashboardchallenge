@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -38,17 +39,16 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-//    protected function authenticated(Request $request, User $user)
-//{
-  //  if ($user->authority !=0) {
+    //public  function redirectTo()
+    //{
+      // $authority = Auth::user()->isNotGuest();
+      //if (\Auth::user()->isNotGuest()) {
         // an admin
-    //    $redirect = '/home';
-    //}
-    //} else {
-        // it's a user
-      //  $redirect = '/login';
-    //}
-    //return redirect($redirect);
-//}
+      //  $this->redirectTo = '/home';
+      //} else {
+         //it's a GUEST
+        //$this->redirectTo = '/login';
+      //}
+      //return redirect($this->redirectTo);
+  //}
 }

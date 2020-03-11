@@ -17,8 +17,8 @@ class CreateChallengesTable extends Migration
             $table->increments('id_challenge');
             $table->string('title');
             $table->string('status');
-            $table->text('description');
-            $table->string('winnerName');
+            $table->text('description')->nullable();
+            $table->string('winnerName')->nullable();
             $table->date('startDate');
             $table->date('deadline');
             $table->timestamps();

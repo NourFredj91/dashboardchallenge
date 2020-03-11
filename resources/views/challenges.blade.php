@@ -14,11 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
                 </div>
 
                 <div>
-                
+
+                <button class="btn btn-success" style="margin-left: 91%; margin-bottom: 4%;" type="button"  onclick="location.href='{{url('/add-challenge')}}'" >Add</button>
                 </div>
                 <div>
                   <table class="table table-bordered">
@@ -29,8 +29,8 @@
                       <th>Deadline</th>
                       <th>Description</th>
                       <th>Winner's Name</th>
-                      <th>Challenge Details<th>
-
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                     @foreach($chanllenges as $challenge)
                     <tr>
@@ -40,7 +40,9 @@
                         <td>{{$challenge['deadline']}}</td>
                         <td>{{$challenge['description']}}</td>
                         <td>{{$challenge['winnerName']}}</td>
-                        <td> <button class="btn btn-primary" type="button"  onclick="location.href='{{url('/challenge-details')}}/{{$challenge['id_challenge']}}'" >Deatils</button>
+                        <td> <button class="btn btn-warning" type="button"  onclick="location.href='{{url('/edit-challenge')}}/{{$challenge['id_challenge']}}'" >Edit</button>
+                        </td>
+                        <td> <button class="btn btn-danger" type="button"  onclick="location.href='{{url('/delete-challenge')}}/{{$challenge['id_challenge']}}'" >Delete</button>
                         </td>
                    </tr>
                     @endforeach
