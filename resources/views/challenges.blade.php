@@ -40,9 +40,9 @@
                         <td>{{$challenge['deadline']}}</td>
                         <td>{{$challenge['description']}}</td>
                         <td>{{$challenge['winnerName']}}</td>
-                        <td> <button class="btn btn-warning" type="button"  onclick="location.href='{{url('/edit-challenge')}}/{{$challenge['id_challenge']}}'" >Edit</button>
+                        <td> <button class="btn btn-warning" type="button"  onclick="location.href='{{url('/edit-challenge')}}/{{$challenge['id']}}'" >Edit</button>
                         </td>
-                        <td> <button class="btn btn-danger" type="button"  onclick="location.href='{{url('/delete-challenge')}}/{{$challenge['id_challenge']}}'" >Delete</button>
+                        <td> <button class="btn btn-danger" type="button"  onclick="location.href='{{url('/delete-challenge')}}/{{$challenge['id']}}'" >Delete</button>
                         </td>
                    </tr>
                     @endforeach

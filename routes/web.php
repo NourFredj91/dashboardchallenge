@@ -20,9 +20,17 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/challenge-details/{id_challenge}', 'ChallengeController@index')->name('details');
+Route::get('/challenge-details/{id}', 'ChallengeController@index')->name('details');
 Route::get('/challenges', 'ChallengeController@get')->name('Challenges');
 Route::get('/authority', 'UserController@index')->name('Authority');
-Route::get('/edit-challenge', 'ChallengeController@edit')->name('Authority');
-Route::get('/delete-challenge', 'ChallengeController@delete')->name('Authority');
-Route::get('/add-challenge', 'ChallengeController@add')->name('Authority');
+Route::get('/edit-challenge/{id}', 'ChallengeController@edit');
+Route::get('/delete-challenge/{id}', 'ChallengeController@delete');
+Route::get('/add-challenge', 'ChallengeController@add');
+
+Route::post('/add-challenge', 'ChallengeController@storeChallenge')->name('challenge.store');
+Route::patch('/edit-challenge/{id}', 'ChallengeController@update')->name('challenges.update');
+Route::post('/challenge-details/{id}', 'ChallengeController@return')->name('challenges.return');
+Route::post('/delete-challenge/{id}', 'ChallengeController@deleteChallenge')->name('challenge.delete');
+
+Route::get('file-upload', 'FileController@fileUpload')->name('file.upload');
+Route::post('file-upload', 'FileController@fileUploadPost')->name('file.upload.post');

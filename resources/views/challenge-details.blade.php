@@ -1,28 +1,76 @@
 @extends('layouts.app')
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Challenge details</div>
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        <h1 class="display-3">Challenge Details</h1>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    
-                </div>
-
-                <div>
-                
-                </div>
-                <div>
-                 <?php echo $challenge?>
-                 
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+        <br />
+        @endif
+        <form id="idChallenge" method="post" action="{{ route('challenges.return', $challenge->id) }}">
+            @csrf
+            <div class="form-group">
+
+                <label for="title">First Name:</label>
+                <input type="text" class="form-control" name="title" value={{ $challenge->title }} />
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select class="form-control" name="status">
+
+                    <option> {{ $challenge->status }}</option>
+               </select>
+
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="text" class="form-control" name="startDate" value={{ $challenge->startDate }} />
+            </div>
+            <div class="form-group">
+                <label for="deadline">Deadline:</label>
+                <input type="text" class="form-control" name="deadline" value={{ $challenge->deadline }} />
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" name="description" value={{ $challenge->description }} />
+            </div>
+            <div class="form-group">
+                <label for="winnerName">Winner's Name:</label>
+                <input type="text" class="form-control" name="winnerName" value={{  $challenge->winnerName}} />
+
+            </div>
+            <button type="submit" class="btn btn-primary">Back</button>
+
+        </form>
+        <br/>
+
+        @if($challenge->status !='done')
+        <form id="idupload" action="{{ route('file.upload.post') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+
+                <div class="col-md-6">
+                    <input id="idFile" type="file" name="file" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </div>
+                <br/>
+                <?php echo 'Please upload your code file if you want to participate in this challenge (only zip file will be uploaded)' ?>
+            </div>
+        </form>
+        @endif
     </div>
 </div>
 @endsection

@@ -14,12 +14,15 @@
                         </div>
                     @endif
 
-                    You are logged in!
                 </div>
 
                 <div>
-                
+
                 </div>
+
+                @if($authority == '0')
+                <?php echo 'Hello Guest :) . Your status didnt change yet. Please wait until Admin change it' ?>
+                @else
                 <div>
                   <table class="table table-bordered">
                     <tr>
@@ -40,13 +43,14 @@
                         <td>{{$challenge['deadline']}}</td>
                         <td>{{$challenge['description']}}</td>
                         <td>{{$challenge['winnerName']}}</td>
-                        <td> <button class="btn btn-primary" type="button"  onclick="location.href='{{url('/challenge-details')}}/{{$challenge['id_challenge']}}'" >Deatils</button>
+                        <td> <button class="btn btn-primary" type="button"  onclick="location.href='{{url('/challenge-details')}}/{{$challenge['id']}}'" >Deatils</button>
                         </td>
                    </tr>
                     @endforeach
                   </table>
 
                 </div>
+                @endif
             </div>
         </div>
     </div>

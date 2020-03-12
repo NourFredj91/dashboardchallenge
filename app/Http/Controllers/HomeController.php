@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Challenge;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,8 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $authority = Auth::user()->authority;
         $chanllenges = Challenge::all()->toArray();
-        return view('home', compact('chanllenges'));
+        return view('home', compact('chanllenges', 'authority'));
 
     }
 }

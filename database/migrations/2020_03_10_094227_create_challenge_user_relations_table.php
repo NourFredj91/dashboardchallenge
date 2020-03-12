@@ -18,7 +18,7 @@ class CreateChallengeUserRelationsTable extends Migration
             $table->integer('id_user')->unsigned();
             $table->integer('id_challenge')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_challenge')->references('id_challenge')->on('challenges')->onDelete('cascade');
+            $table->foreign('id_challenge')->references('id')->on('challenges')->onDelete('cascade');
             $table->string('codeFileName');
             $table->timestamps();
         });

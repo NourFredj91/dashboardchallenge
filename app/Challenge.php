@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Challenge extends Model
 {
 
+    protected $fillable = [
+        'title',
+        'status',
+        'deadline',
+        'description',
+        'winnerName',
+        'startDate'
+    ];
+
       /*
         relation many to many
       */
