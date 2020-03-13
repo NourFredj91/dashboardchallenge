@@ -32,5 +32,7 @@ Route::patch('/edit-challenge/{id}', 'ChallengeController@update')->name('challe
 Route::post('/challenge-details/{id}', 'ChallengeController@return')->name('challenges.return');
 Route::post('/delete-challenge/{id}', 'ChallengeController@deleteChallenge')->name('challenge.delete');
 
-Route::get('file-upload', 'FileController@fileUpload')->name('file.upload');
-Route::post('file-upload', 'FileController@fileUploadPost')->name('file.upload.post');
+
+Route::post('/challenge-details/{id}', 'FileController@fileUploadPost')->name('file.upload.post');
+Route::put('/challenge-details/{id}', 'CommentController@saveComment')->name('save.comment');
+Route::get('/download/{id}', 'FileController@exportWinnerCode')->name('download');

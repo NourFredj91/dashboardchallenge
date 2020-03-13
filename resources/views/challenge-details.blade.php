@@ -15,7 +15,7 @@
         </div>
         <br />
         @endif
-        <form id="idChallenge" method="post" action="{{ route('challenges.return', $challenge->id) }}">
+        <form id="idChallenge">
             @csrf
             <div class="form-group">
 
@@ -28,7 +28,7 @@
                 <select class="form-control" name="status">
 
                     <option> {{ $challenge->status }}</option>
-               </select>
+                </select>
 
             </div>
 
@@ -49,26 +49,82 @@
                 <input type="text" class="form-control" name="winnerName" value={{  $challenge->winnerName}} />
 
             </div>
-            <button type="submit" class="btn btn-primary">Back</button>
+
+            <div class="form-group">
+                <label>Comments:</label>
+                <br />
+
+                @if($comments != null)
+                @foreach($comments as $comment)
+
+                <label for="name">Writter's name: {{ $comment->name }}</label>
+                <input type="text" class="col-md-4" name="comment"
+                    value={{  $comment->descriptionComment}} /><br /><br />
+                @endforeach
+                @endif
+            </div>
+            <a href="{{ URL::previous() }}">Go Back</a>
 
         </form>
-        <br/>
+        <br />
 
-        @if($challenge->status !='done')
-        <form id="idupload" action="{{ route('file.upload.post') }}" method="POST" enctype="multipart/form-data">
+        @if($comments->count() >0)
+        <form id="idupload" action="{{ route('file.upload.post', $challenge->id) }}" method="post"
+            style="margin-top: -43%; margin-left: 51%;" class="col-md-6" enctype="multipart/form-data">
             @csrf
-            <div class="row">
 
+            <label for="comment">Comment</label>
+
+            <textarea name="comment" class="form-control" placeholder="you can write your comment here..."
+                type="text"></textarea>
+            <br />
+            <button type="submit" class="btn btn-info">Add Comment</button>
+
+            <br />
+            <br />
+            <br />
+            @if($challenge->status !='done')
+            <div class="row">
                 <div class="col-md-6">
-                    <input id="idFile" type="file" name="file" class="form-control">
+                    <input id="idFile" type="file" name="file">
                 </div>
 
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-success">Upload</button>
                 </div>
-                <br/>
+                <br />
                 <?php echo 'Please upload your code file if you want to participate in this challenge (only zip file will be uploaded)' ?>
             </div>
+            @endif
+        </form>
+        @else
+        <form id="idupload" action="{{ route('file.upload.post', $challenge->id) }}" method="post" class="col-md-6"
+            enctype="multipart/form-data">
+            @csrf
+
+            <label for="comment">Comment</label>
+
+            <textarea name="comment" class="form-control" placeholder="you can write your comment here..."
+                type="text"></textarea>
+            <br />
+            <button type="submit" class="btn btn-info">Add Comment</button>
+
+            <br />
+            <br />
+            <br />
+            @if($challenge->status !='done')
+            <div class="row">
+                <div class="col-md-6">
+                    <input id="idFile" type="file" name="file">
+                </div>
+
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </div>
+                <br />
+                <?php echo 'Please upload your code file if you want to participate in this challenge (only zip file will be uploaded)' ?>
+            </div>
+            @endif
         </form>
         @endif
     </div>

@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Challenge;
-
+use App\Comment;
 
 class ChallengeController extends Controller
 {
    public function index($id){
      $challenge = Challenge::find($id);
-     return view('challenge-details', compact('challenge'));
+
+     $comments = DB::table('comments')
+     ->select('comments.descriptionComment', 'users.name')
+     ->join('users', 'users.id', '=', 'comments.id_writter')
+     ->where('comments.id_challenge', $id)
+     ->get();
+
+     return view('challenge-details', compact('challenge', 'comments'));
    }
 
    public function create(){
